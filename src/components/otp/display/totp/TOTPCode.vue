@@ -1,10 +1,11 @@
 <template>
   {{ token }}
+  {{ remainTime }}
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { TOTP } from "otpauth";
+import { useTOTP } from "@/composables/otp/useTOTP";
+import { toRef } from "vue";
 
 const props = defineProps<{
   options: {
@@ -12,18 +13,7 @@ const props = defineProps<{
   };
 }>();
 
-// Create a new TOTP object.
-const totp = computed(
-  () =>
-    new TOTP({
-      issuer: "ACME",
-      label: "AzureDiamond",
-      algorithm: "SHA1",
-      digits: 6,
-      period: 30,
-      secret: props.options.secret, // or 'OTPAuth.Secret.fromBase32("NB2W45DFOIZA")'
-    })
-);
+const options = toRef(props, "options");
 
-const token = computed(() => totp.value.generate());
+const { token, remainTime } = useTOTP(options);
 </script>
