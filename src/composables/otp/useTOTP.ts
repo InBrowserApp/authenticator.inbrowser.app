@@ -5,19 +5,21 @@ import { get, useNow } from "@vueuse/core";
 import { TOTP } from "otpauth";
 import type { TOTPOptions } from "@/data/otp/totp/types";
 
-export function useTOTP(options: TOTPOptions | Ref<TOTPOptions>) {
+export function useTOTP(options_: TOTPOptions | Ref<TOTPOptions>) {
   const now = useNow();
+
+  const options = get(options_);
 
   // Create a new TOTP object.
   const totp = computed(
     () =>
       new TOTP({
-        issuer: "ACME",
-        label: "AzureDiamond",
-        algorithm: "SHA1",
-        digits: 6,
-        period: 30,
-        secret: get(options).secret, // or 'OTPAuth.Secret.fromBase32("NB2W45DFOIZA")'
+        issuer: options.issuer,
+        label: options.label,
+        algorithm: options.algorithm,
+        digits: options.digits,
+        period: options.period,
+        secret: options.secret, // or 'OTPAuth.Secret.fromBase32("NB2W45DFOIZA")'
       })
   );
 
