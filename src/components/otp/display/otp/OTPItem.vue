@@ -6,11 +6,13 @@
 
     <template #header-extra>
       <n-space>
-        <TOTPRemainTimeIndicator :period="period" />
+        <TOTPRemainTimeIndicator
+          :period="options.period"
+          v-if="options.type === 'totp'"
+        />
         <OTPOptionsButton />
       </n-space>
     </template>
-
     <OTPToken :token="token" style="font-size: 3em" />
   </n-thing>
 </template>
@@ -18,7 +20,7 @@
 <script setup lang="ts">
 import OTPToken from "./OTPToken.vue";
 import { NThing, NSpace } from "naive-ui";
-import { useTOTP } from "@/composables/otp/useTOTP";
+import { useOTP } from "@/composables/otp/useOTP";
 import { toRef } from "vue";
 import { toRefs } from "@vueuse/core";
 import OTPOptionsButton from "./OTPOptionsButton.vue";
@@ -31,5 +33,5 @@ const props = defineProps<{
 
 const { options } = toRefs(toRef(props, "otp"));
 
-const { token, period } = useTOTP(options);
+const { token } = useOTP(options);
 </script>

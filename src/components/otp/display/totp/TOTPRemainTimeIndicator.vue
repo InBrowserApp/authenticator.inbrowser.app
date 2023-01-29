@@ -18,17 +18,20 @@ import { useIntervalFn } from "@vueuse/core";
 import IndicatorSVG from "./IndicatorSVG.vue";
 
 const props = defineProps<{
-  period: number;
+  period?: number;
 }>();
 
 // in ms
 const updateInterval = 500;
+const periodInMS = computed(() =>
+  props.period ? props.period * 1000 : 30 * 1000
+);
 
-const remainTime = ref(props.period - (Date.now() % props.period));
+const remainTime = ref(periodInMS.value - (Date.now() % periodInMS.value));
 
 useIntervalFn(() => {
-  remainTime.value = props.period - (Date.now() % props.period);
+  remainTime.value = periodInMS.value - (Date.now() % periodInMS.value);
 }, updateInterval);
 
-const percentage = computed(() => (remainTime.value / props.period) * 100);
+const percentage = computed(() => (remainTime.value / periodInMS.value) * 100);
 </script>

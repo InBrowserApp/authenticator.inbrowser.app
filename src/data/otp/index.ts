@@ -1,1 +1,1 @@
-export type { OTPInfo } from "./types";
+export type { OTPInfo, OTPOptions } from "./types";
