@@ -1,6 +1,8 @@
 <template>
   <span>
     <n-form>
+      <OTPURIInput v-model:options="otp.options" />
+
       <n-form-item label="Type">
         <n-switch v-model:value="typeComputed">
           <template #checked>TOTP</template>
@@ -44,6 +46,7 @@
 import { computed } from "vue";
 import type { OTPInfo } from "@/data/otp";
 import { useVModel } from "@vueuse/core";
+import OTPURIInput from "./OTPURIInput.vue";
 import {
   NForm,
   NFormItem,
