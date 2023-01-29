@@ -1,9 +1,12 @@
 <template>
   <main>
-    <TOTPCode :options="{ secret: 'KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD' }" />
+    <OTPItem
+      name="GitHub"
+      :options="{ secret: 'KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD' }"
+    />
   </main>
 </template>
 
 <script setup lang="ts">
-import TOTPCode from "@/components/otp/display/totp/TOTPCode.vue";
+import OTPItem from "@/components/otp/display/otp/OTPItem.vue";
 </script>

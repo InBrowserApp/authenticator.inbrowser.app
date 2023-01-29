@@ -1,6 +1,7 @@
 <template>
-  {{ token }}
-  {{ remainTime }}
+  <span>
+    {{ token }}
+  </span>
 </template>
 
 <script setup lang="ts">
@@ -15,5 +16,5 @@ const props = defineProps<{
 
 const options = toRef(props, "options");
 
-const { token, remainTime } = useTOTP(options);
+const { token } = useTOTP(options);
 </script>
