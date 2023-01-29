@@ -3,10 +3,7 @@ import { ref, watch } from "vue";
 import { computed } from "vue";
 import { get, useNow } from "@vueuse/core";
 import { TOTP } from "otpauth";
-
-type TOTPOptions = {
-  secret: string;
-};
+import type { TOTPOptions } from "@/data/otp/totp/types";
 
 export function useTOTP(options: TOTPOptions | Ref<TOTPOptions>) {
   const now = useNow();
