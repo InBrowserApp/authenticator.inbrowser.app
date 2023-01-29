@@ -1,4 +1,5 @@
 import type { Ref } from "vue";
+import { ref, watch } from "vue";
 import { computed } from "vue";
 import { get, useNow } from "@vueuse/core";
 import { TOTP } from "otpauth";
@@ -23,19 +24,27 @@ export function useTOTP(options: TOTPOptions | Ref<TOTPOptions>) {
       })
   );
 
-  const token = computed(() =>
+  const token = ref(
     totp.value.generate({
       timestamp: now.value.getTime(),
     })
   );
 
+  const period = computed(() => totp.value.period * 1000);
   const remainTime = computed(() => {
     const time = now.value.getTime();
-    const period = totp.value.period * 1000;
-    return period - (time % period);
+    return period.value - (time % period.value);
   });
 
-  const period = computed(() => totp.value.period * 1000);
+  const periodCount = computed(() =>
+    Math.floor(now.value.getTime() / period.value)
+  );
+
+  watch(periodCount, () => {
+    token.value = totp.value.generate({
+      timestamp: now.value.getTime(),
+    });
+  });
 
   return {
     now,
