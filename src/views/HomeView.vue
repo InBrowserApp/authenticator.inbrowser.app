@@ -1,13 +1,15 @@
 <template>
   <main>
-    <OTPItem :otp="OTPInfo" />
+    <OTPItem v-model:otp="info" />
   </main>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import OTPItem from "@/components/otp/display/otp/OTPItem.vue";
+import type { OTPInfo } from "@/data/otp";
 
-const OTPInfo = {
+const info = ref<OTPInfo>({
   options: {
     type: "totp" as const,
     secret: "KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD",
@@ -17,5 +19,5 @@ const OTPInfo = {
     digits: 6 as const,
     period: 5 as const,
   },
-};
+});
 </script>
