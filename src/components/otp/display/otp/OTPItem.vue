@@ -11,7 +11,7 @@
       </n-space>
     </template>
 
-    <OTPToken :token="token" />
+    <OTPToken :token="token" style="font-size: 3em" />
   </n-thing>
 </template>
 
