@@ -28,13 +28,13 @@
         />
       </n-form-item>
       <n-form-item label="Period" v-if="otp.options.type === 'totp'">
-        <n-input-number v-model:value="otp.options.period" />
+        <n-input-number v-model:value="otp.options.period" :min="0" />
       </n-form-item>
       <n-form-item label="Counter" v-if="otp.options.type === 'hotp'">
-        <n-input-number v-model:value="otp.options.counter" />
+        <n-input-number v-model:value="otp.options.counter" :min="0" />
       </n-form-item>
       <n-form-item label="Digits">
-        <n-input-number v-model:value="otp.options.digits" />
+        <n-input-number v-model:value="otp.options.digits" :min="0" />
       </n-form-item>
     </n-form>
   </span>
