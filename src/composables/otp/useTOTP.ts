@@ -35,10 +35,13 @@ export function useTOTP(options: TOTPOptions | Ref<TOTPOptions>) {
     return period - (time % period);
   });
 
+  const period = computed(() => totp.value.period * 1000);
+
   return {
     now,
     totp,
     token,
     remainTime,
+    period,
   };
 }
