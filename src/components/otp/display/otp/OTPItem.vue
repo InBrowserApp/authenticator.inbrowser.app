@@ -6,7 +6,7 @@
 
     <template #header-extra>
       <n-space>
-        <TOTPRemainTimeIndicator :remain-time="remainTime" :period="period" />
+        <TOTPRemainTimeIndicator :period="period" />
         <OTPOptionsButton />
       </n-space>
     </template>
@@ -32,5 +32,5 @@ const props = defineProps<{
 
 const options = toRef(props, "options");
 
-const { token, remainTime, period } = useTOTP(options);
+const { token, period } = useTOTP(options);
 </script>
