@@ -15,7 +15,7 @@ const OTPInfo = {
     label: "AzureDiamond",
     algorithm: "SHA1" as const,
     digits: 6 as const,
-    period: 30 as const,
+    period: 5 as const,
   },
 };
 </script>
