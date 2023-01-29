@@ -11,13 +11,13 @@ import type { OTPInfo } from "@/data/otp";
 
 const info = ref<OTPInfo>({
   options: {
-    type: "totp" as const,
+    type: "hotp" as const,
     secret: "KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD",
     issuer: "ACME",
     label: "AzureDiamond",
     algorithm: "SHA1" as const,
     digits: 6 as const,
-    period: 5 as const,
+    counter: 0 as const,
   },
 });
 </script>
