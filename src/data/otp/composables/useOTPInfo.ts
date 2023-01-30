@@ -2,7 +2,7 @@ import type { OTPInfo } from "@/data/otp";
 import { useStorage } from "@vueuse/core";
 
 export function useOTPInfo(id: string) {
-  const info = useStorage<OTPInfo>(`authenticator:otp:${id}`, {
+  const info = useStorage<OTPInfo>(`authenticator:otp:item:${id}`, {
     id: id,
     options: {
       type: "totp" as const,

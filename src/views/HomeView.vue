@@ -1,12 +1,14 @@
 <template>
   <main>
-    <OTPItemIDWrapper :id="id" v-for="id in order" :key="id" />
+    <OTPItemIDWrapper :id="id" v-for="id in orderStore.order" :key="id" />
+    <ImportButton />
   </main>
 </template>
 
 <script setup lang="ts">
 import OTPItemIDWrapper from "@/components/otp/display/otp/OTPItemIDWrapper.vue";
-import { useOTPInfosOrder } from "@/data/otp/composables/useOTPInfos";
+import { useOrderStore } from "@/stores/order";
+import ImportButton from "@/components/otp/import/ImportButton.vue";
 
-const { order } = useOTPInfosOrder();
+const orderStore = useOrderStore();
 </script>
