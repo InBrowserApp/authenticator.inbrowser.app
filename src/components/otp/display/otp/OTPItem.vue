@@ -1,8 +1,6 @@
 <template>
   <n-thing>
-    <template #header>
-      {{ options.label }}
-    </template>
+    <template #header> {{ options.label }} / {{ options.issuer }} </template>
 
     <template #header-extra>
       <div style="display: flex">
