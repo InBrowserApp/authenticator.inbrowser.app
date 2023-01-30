@@ -1,8 +1,14 @@
 <template>
-  <n-thing>
-    <template #header> {{ options.label }} / {{ options.issuer }} </template>
+  <div>
+    <!-- header -->
+    <div style="display: flex; justify-content: space-between">
+      <!-- header main -->
+      <div>
+        <n-text style="margin-right: 0.3em">{{ options.issuer }}</n-text>
+        <n-text depth="3">({{ options.label }})</n-text>
+      </div>
 
-    <template #header-extra>
+      <!-- header extra -->
       <div style="display: flex">
         <div>
           <TOTPRemainTimeIndicator
@@ -18,14 +24,17 @@
         <OTPDeleteButton :id="otp.id" />
         <OTPOptionsButton v-model:otp="otp" />
       </div>
-    </template>
-    <OTPToken :token="token" style="font-size: 3em" />
-  </n-thing>
+    </div>
+
+    <div>
+      <OTPToken :token="token" style="font-size: 3em" />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import OTPToken from "./OTPToken.vue";
-import { NThing } from "naive-ui";
+import { NText } from "naive-ui";
 import { useOTP } from "@/composables/otp/useOTP";
 import { toRef } from "vue";
 import { toRefs } from "@vueuse/core";
