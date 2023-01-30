@@ -1,6 +1,8 @@
 <template>
   <nav class="header-nav">
     <NavGitHub />
+    <n-divider vertical />
+    <ImportButton />
   </nav>
 </template>
 
@@ -8,6 +10,7 @@
 import { NDivider } from "naive-ui";
 
 import NavGitHub from "./NavGitHub.vue";
+import ImportButton from "@/components/otp/import/ImportButton.vue";
 </script>
 
 <style scoped>

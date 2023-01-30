@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <span>
     <n-dropdown @select="handleSelect" :options="options">
       <n-button text>
         <template #icon>
@@ -13,7 +13,7 @@
 
     <URIImport v-model:show="shows.uri" />
     <ScreenCaptureImport v-model:show="shows.screen" />
-  </div>
+  </span>
 </template>
 
 <script setup lang="ts">
