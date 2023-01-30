@@ -8,5 +8,9 @@ export const useOrderStore = defineStore("order", () => {
     order.value.push(id);
   }
 
-  return { order, add };
+  function del(id: string) {
+    order.value = order.value.filter((item) => item !== id);
+  }
+
+  return { order, add, del };
 });

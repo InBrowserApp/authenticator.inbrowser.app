@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { useStorage } from "@vueuse/core";
 import type { OTPInfo } from "@/data/otp";
 import { useOrderStore } from "./order";
+import { nextTick } from "vue";
 
 export const useOTPInfosStore = defineStore("otp-infos", () => {
   const orderStore = useOrderStore();
@@ -16,5 +17,12 @@ export const useOTPInfosStore = defineStore("otp-infos", () => {
     orderStore.add(info.id);
   }
 
-  return { infos, add, order: orderStore.order };
+  function del(id: string) {
+    orderStore.del(id);
+    nextTick(() => {
+      delete infos.value[id];
+    });
+  }
+
+  return { infos, add, del };
 });

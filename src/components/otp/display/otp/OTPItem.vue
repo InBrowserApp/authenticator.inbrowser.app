@@ -5,7 +5,7 @@
     </template>
 
     <template #header-extra>
-      <n-space>
+      <div style="display: flex">
         <div>
           <TOTPRemainTimeIndicator
             :period="options.period"
@@ -17,8 +17,9 @@
           />
         </div>
 
+        <OTPDeleteButton :id="otp.id" />
         <OTPOptionsButton v-model:otp="otp" />
-      </n-space>
+      </div>
     </template>
     <OTPToken :token="token" style="font-size: 3em" />
   </n-thing>
@@ -26,12 +27,13 @@
 
 <script setup lang="ts">
 import OTPToken from "./OTPToken.vue";
-import { NThing, NSpace } from "naive-ui";
+import { NThing } from "naive-ui";
 import { useOTP } from "@/composables/otp/useOTP";
 import { toRef } from "vue";
 import { toRefs } from "@vueuse/core";
 import OTPOptionsButton from "./OTPOptionsButton.vue";
 import TOTPRemainTimeIndicator from "../totp/TOTPRemainTimeIndicator.vue";
+import OTPDeleteButton from "./OTPDeleteButton.vue";
 import type { OTPInfo } from "@/data/otp";
 import { useVModel } from "@vueuse/core";
 import HOTPCounter from "../hotp/HOTPCounter.vue";
