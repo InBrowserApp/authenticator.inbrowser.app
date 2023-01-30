@@ -1,23 +1,12 @@
 <template>
   <main>
-    <OTPItem v-model:otp="info" />
+    <OTPItemIDWrapper :id="id" v-for="id in order" :key="id" />
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import OTPItem from "@/components/otp/display/otp/OTPItem.vue";
-import type { OTPInfo } from "@/data/otp";
+import OTPItemIDWrapper from "@/components/otp/display/otp/OTPItemIDWrapper.vue";
+import { useOTPInfosOrder } from "@/data/otp/composables/useOTPInfos";
 
-const info = ref<OTPInfo>({
-  options: {
-    type: "hotp" as const,
-    secret: "KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD",
-    issuer: "ACME",
-    label: "AzureDiamond",
-    algorithm: "SHA1" as const,
-    digits: 6 as const,
-    counter: 0 as const,
-  },
-});
+const { order } = useOTPInfosOrder();
 </script>
