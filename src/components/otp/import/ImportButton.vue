@@ -23,6 +23,7 @@ import ScreenCaptureImport from "./screen/ScreenCaptureImport.vue";
 import { NButton, NIcon, NDropdown } from "naive-ui";
 import AddSquareMultiple16Regular from "@vicons/fluent/AddSquareMultiple16Regular";
 import Link16Regular from "@vicons/fluent/Link16Regular";
+import Desktop16Regular from "@vicons/fluent/Desktop16Regular";
 
 const shows = ref<Record<string, boolean>>({
   uri: false,
@@ -46,7 +47,7 @@ const options = [
   {
     label: "Screen Capture",
     key: "screen",
-    icon: renderIcon(Link16Regular),
+    icon: renderIcon(Desktop16Regular),
   },
 ];
 

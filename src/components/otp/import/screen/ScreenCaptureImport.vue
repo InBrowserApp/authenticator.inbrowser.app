@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { ref, watch, nextTick } from "vue";
 import { NModal, NCard, NButton, NIcon, useMessage } from "naive-ui";
 import { useVModel } from "@vueuse/core";
 import Camera16Regular from "@vicons/fluent/Camera16Regular";
@@ -62,6 +62,14 @@ const displayMediaOptions = {
   video: true,
   audio: false,
 };
+
+watch(show, (show) => {
+  if (show) {
+    nextTick(startCapturing);
+  } else {
+    stopCapturing();
+  }
+});
 
 const startCapturing = async () => {
   try {
