@@ -1,5 +1,5 @@
 <template>
-  <n-modal :show="true">
+  <n-modal :show="false">
     <n-card
       style="width: 600px"
       title="Import from Camera"

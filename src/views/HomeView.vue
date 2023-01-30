@@ -1,7 +1,6 @@
 <template>
   <main>
     <OTPItem v-model:otp="info" />
-    <CameraImport />
   </main>
 </template>
 
@@ -9,7 +8,6 @@
 import { ref } from "vue";
 import OTPItem from "@/components/otp/display/otp/OTPItem.vue";
 import type { OTPInfo } from "@/data/otp";
-import CameraImport from "@/components/otp/import/camera/CameraImport.vue";
 
 const info = ref<OTPInfo>({
   options: {
