@@ -1,16 +1,16 @@
 <template>
   <main>
-    <OTPItem v-model:otp="info" />
+    <OTPItem v-model:otp="OTPInfosStore.infos[props.id]" />
   </main>
 </template>
 
 <script setup lang="ts">
 import OTPItem from "@/components/otp/display/otp/OTPItem.vue";
-import { useOTPInfo } from "@/data/otp/composables/useOTPInfo";
+import { useOTPInfosStore } from "@/stores/otpInfos";
 
 const props = defineProps<{
   id: string;
 }>();
 
-const info = useOTPInfo(props.id);
+const OTPInfosStore = useOTPInfosStore();
 </script>

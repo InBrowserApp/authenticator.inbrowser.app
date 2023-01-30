@@ -30,10 +30,10 @@ import {
   NInputGroup,
   useMessage,
 } from "naive-ui";
-import { parseURIToOTPOptions, insertInfo } from "@/data/otp";
+import { parseURIToOTPOptions } from "@/data/otp";
 import { useVModel } from "@vueuse/core";
 import { v4 as uuidv4 } from "uuid";
-import { useOrderStore } from "@/stores/order";
+import { useOTPInfosStore } from "@/stores/otpInfos";
 
 const props = defineProps<{
   show: boolean;
@@ -42,7 +42,7 @@ const props = defineProps<{
 const emit = defineEmits(["update:show"]);
 const show = useVModel(props, "show", emit);
 
-const orderStore = useOrderStore();
+const OTPInfosStore = useOTPInfosStore();
 
 // otpauth://totp/Test%20Issuer:Test%20Label?issuer=Test%20Issuer&secret=KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD&algorithm=SHA1&digits=6&period=30
 const uri = ref<string>("");
@@ -52,8 +52,8 @@ const onClick = () => {
   try {
     const options = parseURIToOTPOptions(uri.value);
     const id = uuidv4();
-    insertInfo({ id, options });
-    orderStore.add(id);
+
+    OTPInfosStore.add({ id, options });
 
     message.success("Imported OTP successfully");
     uri.value = "";
