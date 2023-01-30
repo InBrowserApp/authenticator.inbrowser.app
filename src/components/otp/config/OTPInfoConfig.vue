@@ -1,5 +1,10 @@
 <template>
   <n-collapse>
+    <n-collapse-item title="QR Code" name="QR Code">
+      <div style="display: flex; justify-content: center">
+        <OTPQRCode :options="otp.options" />
+      </div>
+    </n-collapse-item>
     <n-collapse-item title="Key URI" name="key uri">
       <div><OTPURIInput v-model:options="otp.options" /></div>
     </n-collapse-item>
@@ -71,6 +76,7 @@ import {
   NCollapse,
   NCollapseItem,
 } from "naive-ui";
+import OTPQRCode from "@/components/otp/display/otp/OTPQRCode.vue";
 
 const props = defineProps<{
   otp: OTPInfo;
