@@ -21,7 +21,6 @@
           />
         </div>
 
-        <OTPDeleteButton :id="otp.id" />
         <OTPOptionsButton v-model:otp="otp" />
       </div>
     </div>
@@ -40,7 +39,6 @@ import { toRef } from "vue";
 import { toRefs } from "@vueuse/core";
 import OTPOptionsButton from "./OTPOptionsButton.vue";
 import TOTPRemainTimeIndicator from "../totp/TOTPRemainTimeIndicator.vue";
-import OTPDeleteButton from "./OTPDeleteButton.vue";
 import type { OTPInfo } from "@/data/otp";
 import { useVModel } from "@vueuse/core";
 import HOTPCounter from "../hotp/HOTPCounter.vue";

@@ -8,6 +8,9 @@
       role="dialog"
       aria-modal="true"
     >
+      <template #header-extra>
+        <OTPDeleteButton :id="otp.id" />
+      </template>
       <OTPInfoConfig v-model:otp="otp" />
     </n-card>
   </n-modal>
@@ -18,6 +21,7 @@ import { NModal, NCard } from "naive-ui";
 import { useVModel } from "@vueuse/core";
 import type { OTPInfo } from "@/data/otp";
 import OTPInfoConfig from "./OTPInfoConfig.vue";
+import OTPDeleteButton from "./OTPDeleteButton.vue";
 
 const props = defineProps<{
   show: boolean;
