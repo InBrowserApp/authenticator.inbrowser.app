@@ -1,7 +1,12 @@
 <template>
   <span>
-    <span style="margin-right: 0.4em">{{ firstPart }}</span
-    ><span>{{ secondPart }}</span>
+    <span v-if="!hide">
+      <span style="margin-right: 0.4em">{{ firstPart }}</span
+      ><span>{{ secondPart }}</span>
+    </span>
+    <span v-else style="user-select: none">
+      <span style="margin-right: 0.4em">●●●</span><span>●●●</span>
+    </span>
   </span>
 </template>
 
@@ -11,6 +16,7 @@ import { computed } from "vue";
 
 const props = defineProps<{
   token: string;
+  hide?: boolean;
 }>();
 
 // divide token to two part
