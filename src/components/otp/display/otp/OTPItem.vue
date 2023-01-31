@@ -15,7 +15,7 @@
             :period="options.period"
             v-if="options.type === 'totp'"
           />
-          <HOTPCounter
+          <HOTPRefreshButton
             v-model:counter="options.counter"
             v-if="options.type === 'hotp'"
           />
@@ -40,9 +40,9 @@ import OTPOptionsButton from "./OTPOptionsButton.vue";
 import TOTPRemainTimeIndicator from "../totp/TOTPRemainTimeIndicator.vue";
 import type { OTPInfo } from "@/data/otp";
 import { useVModel } from "@vueuse/core";
-import HOTPCounter from "../hotp/HOTPCounter.vue";
 import HOTPToken from "../hotp/HOTPToken.vue";
 import TOTPToken from "../totp/TOTPToken.vue";
+import HOTPRefreshButton from "../hotp/HOTPRefreshButton.vue";
 
 const props = defineProps<{
   otp: OTPInfo;
