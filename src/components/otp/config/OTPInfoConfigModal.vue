@@ -12,7 +12,7 @@
         <OTPDeleteButton :id="otp.id" />
       </template>
       <n-scrollbar style="max-height: 70vh">
-        <OTPInfoConfig v-model:otp="otp" />
+        <OTPInfoConfig v-model:options="otp.options" />
       </n-scrollbar>
     </n-card>
   </n-modal>
