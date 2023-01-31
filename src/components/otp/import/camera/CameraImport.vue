@@ -85,6 +85,8 @@ const startCapturing = async () => {
       recording.value = true;
     }
   } catch (err) {
+    message.error(`Failed to start capturing: ${err}`);
+    show.value = false;
     console.error("Error: " + err);
   }
 };
