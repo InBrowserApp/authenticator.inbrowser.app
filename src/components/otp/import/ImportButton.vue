@@ -14,6 +14,7 @@
     <URIImport v-model:show="shows.uri" />
     <ScreenCaptureImport v-model:show="shows.screen" />
     <CameraImport v-model:show="shows.camera" />
+    <ManualImport v-model:show="shows.manual" />
   </span>
 </template>
 
@@ -22,17 +23,20 @@ import { ref, h, type Component } from "vue";
 import URIImport from "./uri/URIImport.vue";
 import ScreenCaptureImport from "./screen/ScreenCaptureImport.vue";
 import CameraImport from "./camera/CameraImport.vue";
+import ManualImport from "./manual/ManualImport.vue";
 
 import { NButton, NIcon, NDropdown } from "naive-ui";
 import AddSquareMultiple16Regular from "@vicons/fluent/AddSquareMultiple16Regular";
 import Link16Regular from "@vicons/fluent/Link16Regular";
 import Desktop16Regular from "@vicons/fluent/Desktop16Regular";
 import Camera16Regular from "@vicons/fluent/Camera16Regular";
+import Password16Regular from "@vicons/fluent/Password16Regular";
 
 const shows = ref<Record<string, boolean>>({
   uri: false,
   screen: false,
   camera: false,
+  manual: false,
 });
 
 const renderIcon = (icon: Component) => {
@@ -58,6 +62,11 @@ const options = [
     label: "URI",
     key: "uri",
     icon: renderIcon(Link16Regular),
+  },
+  {
+    label: "Manual",
+    key: "manual",
+    icon: renderIcon(Password16Regular),
   },
 ];
 
