@@ -1,6 +1,6 @@
 <template>
   <span>
-    <n-dropdown @select="handleSelect" :options="options">
+    <n-dropdown @select="handleSelect" :options="options" trigger="click">
       <n-button text>
         <template #icon>
           <n-icon>
