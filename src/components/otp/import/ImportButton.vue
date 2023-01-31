@@ -32,7 +32,7 @@ import Desktop16Regular from "@vicons/fluent/Desktop16Regular";
 import Camera16Regular from "@vicons/fluent/Camera16Regular";
 import Password16Regular from "@vicons/fluent/Password16Regular";
 
-import DetectRTC from "detectrtc";
+import { isScreenCapturingSupported, hasWebcam } from "detectrtc";
 
 const shows = ref<Record<string, boolean>>({
   uri: false,
@@ -42,8 +42,8 @@ const shows = ref<Record<string, boolean>>({
 });
 
 const supports = {
-  screen: DetectRTC.isScreenCapturingSupported,
-  camera: DetectRTC.hasWebcam,
+  screen: isScreenCapturingSupported,
+  camera: hasWebcam,
 };
 
 const renderIcon = (icon: Component) => {
