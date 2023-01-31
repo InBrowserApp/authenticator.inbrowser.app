@@ -12,8 +12,8 @@
     </n-dropdown>
 
     <URIImport v-model:show="shows.uri" />
-    <ScreenCaptureImport v-model:show="shows.screen" />
-    <CameraImport v-model:show="shows.camera" />
+    <ScreenCaptureImport v-model:show="shows.screen" v-if="supports.screen" />
+    <CameraImport v-model:show="shows.camera" v-if="supports.camera" />
     <ManualImport v-model:show="shows.manual" />
   </span>
 </template>
@@ -32,12 +32,19 @@ import Desktop16Regular from "@vicons/fluent/Desktop16Regular";
 import Camera16Regular from "@vicons/fluent/Camera16Regular";
 import Password16Regular from "@vicons/fluent/Password16Regular";
 
+import DetectRTC from "detectrtc";
+
 const shows = ref<Record<string, boolean>>({
   uri: false,
   screen: false,
   camera: false,
   manual: false,
 });
+
+const supports = {
+  screen: DetectRTC.isScreenCapturingSupported,
+  camera: DetectRTC.hasWebcam,
+};
 
 const renderIcon = (icon: Component) => {
   return () => {
@@ -47,17 +54,29 @@ const renderIcon = (icon: Component) => {
   };
 };
 
+const screenOptions = supports.screen
+  ? [
+      {
+        label: "Screen Capture",
+        key: "screen",
+        icon: renderIcon(Desktop16Regular),
+      },
+    ]
+  : [];
+
+const cameraOptions = supports.camera
+  ? [
+      {
+        label: "Camera",
+        key: "camera",
+        icon: renderIcon(Camera16Regular),
+      },
+    ]
+  : [];
+
 const options = [
-  {
-    label: "Screen Capture",
-    key: "screen",
-    icon: renderIcon(Desktop16Regular),
-  },
-  {
-    label: "Camera",
-    key: "camera",
-    icon: renderIcon(Camera16Regular),
-  },
+  ...screenOptions,
+  ...cameraOptions,
   {
     label: "URI",
     key: "uri",
