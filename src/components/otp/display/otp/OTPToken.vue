@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <span class="token">
     <span v-if="!hide">
       <span style="margin-right: 0.4em">{{ firstPart }}</span
       ><span>{{ secondPart }}</span>
@@ -26,3 +26,9 @@ const secondPart = computed(() => props.token.slice(divideIndex.value));
 
 // const tokenAnimated = useTokenAnimated(toRef(props, "token"));
 </script>
+
+<style scoped>
+.token {
+  font-variant-numeric: tabular-nums;
+}
+</style>

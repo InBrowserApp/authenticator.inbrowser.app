@@ -26,15 +26,14 @@
     </div>
 
     <div>
-      <OTPToken :token="token" style="font-size: 3em" />
+      <HOTPToken v-if="options.type === 'hotp'" v-model:options="options" />
+      <TOTPToken v-if="options.type === 'totp'" :options="options" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import OTPToken from "./OTPToken.vue";
 import { NText } from "naive-ui";
-import { useOTP } from "@/composables/otp/useOTP";
 import { toRef } from "vue";
 import { toRefs } from "@vueuse/core";
 import OTPOptionsButton from "./OTPOptionsButton.vue";
@@ -42,6 +41,8 @@ import TOTPRemainTimeIndicator from "../totp/TOTPRemainTimeIndicator.vue";
 import type { OTPInfo } from "@/data/otp";
 import { useVModel } from "@vueuse/core";
 import HOTPCounter from "../hotp/HOTPCounter.vue";
+import HOTPToken from "../hotp/HOTPToken.vue";
+import TOTPToken from "../totp/TOTPToken.vue";
 
 const props = defineProps<{
   otp: OTPInfo;
@@ -51,6 +52,4 @@ const emit = defineEmits(["update:otp"]);
 const otp = useVModel(props, "otp", emit);
 
 const { options } = toRefs(toRef(props, "otp"));
-
-const { token } = useOTP(options);
 </script>
