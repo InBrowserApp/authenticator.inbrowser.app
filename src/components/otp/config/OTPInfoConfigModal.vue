@@ -1,7 +1,7 @@
 <template>
   <n-modal v-model:show="show">
     <n-card
-      style="width: 600px"
+      style="width: 600px; max-width: 90vw"
       title="Config"
       :bordered="false"
       size="huge"
@@ -11,13 +11,15 @@
       <template #header-extra>
         <OTPDeleteButton :id="otp.id" />
       </template>
-      <OTPInfoConfig v-model:otp="otp" />
+      <n-scrollbar style="max-height: 70vh">
+        <OTPInfoConfig v-model:otp="otp" />
+      </n-scrollbar>
     </n-card>
   </n-modal>
 </template>
 
 <script lang="ts" setup>
-import { NModal, NCard } from "naive-ui";
+import { NModal, NCard, NScrollbar } from "naive-ui";
 import { useVModel } from "@vueuse/core";
 import type { OTPInfo } from "@/data/otp";
 import OTPInfoConfig from "./OTPInfoConfig.vue";
