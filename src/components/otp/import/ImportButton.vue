@@ -15,6 +15,7 @@
     <ScreenCaptureImport v-model:show="shows.screen" v-if="supports.screen" />
     <CameraImport v-model:show="shows.camera" v-if="supports.camera" />
     <ManualImport v-model:show="shows.manual" />
+    <PictureImport v-model:show="shows.picture" />
   </span>
 </template>
 
@@ -24,6 +25,7 @@ import URIImport from "./uri/URIImport.vue";
 import ScreenCaptureImport from "./screen/ScreenCaptureImport.vue";
 import CameraImport from "./camera/CameraImport.vue";
 import ManualImport from "./manual/ManualImport.vue";
+import PictureImport from "./picture/PictureImport.vue";
 
 import { NButton, NIcon, NDropdown } from "naive-ui";
 import AddSquareMultiple16Regular from "@vicons/fluent/AddSquareMultiple16Regular";
@@ -31,6 +33,7 @@ import Link16Regular from "@vicons/fluent/Link16Regular";
 import Desktop16Regular from "@vicons/fluent/Desktop16Regular";
 import Camera16Regular from "@vicons/fluent/Camera16Regular";
 import Password16Regular from "@vicons/fluent/Password16Regular";
+import Image16Regular from "@vicons/fluent/Image16Regular";
 
 import { isScreenCapturingSupported, hasWebcam } from "detectrtc";
 
@@ -39,6 +42,7 @@ const shows = ref<Record<string, boolean>>({
   screen: false,
   camera: false,
   manual: false,
+  picture: false,
 });
 
 const supports = {
@@ -77,6 +81,11 @@ const cameraOptions = supports.camera
 const options = [
   ...screenOptions,
   ...cameraOptions,
+  {
+    label: "Picture",
+    key: "picture",
+    icon: renderIcon(Image16Regular),
+  },
   {
     label: "URI",
     key: "uri",
