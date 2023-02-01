@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, h, type Component } from "vue";
+import { ref, h, type Component, computed, onMounted } from "vue";
 import URIImport from "./uri/URIImport.vue";
 import ScreenCaptureImport from "./screen/ScreenCaptureImport.vue";
 import CameraImport from "./camera/CameraImport.vue";
@@ -35,7 +35,7 @@ import Camera16Regular from "@vicons/fluent/Camera16Regular";
 import Password16Regular from "@vicons/fluent/Password16Regular";
 import Image16Regular from "@vicons/fluent/Image16Regular";
 
-import { isScreenCapturingSupported, hasWebcam } from "detectrtc";
+import DetectRTC from "detectrtc";
 
 const shows = ref<Record<string, boolean>>({
   uri: false,
@@ -45,10 +45,17 @@ const shows = ref<Record<string, boolean>>({
   picture: false,
 });
 
-const supports = {
-  screen: isScreenCapturingSupported,
-  camera: hasWebcam,
-};
+const supports = ref({
+  screen: false,
+  camera: false,
+});
+
+onMounted(() => {
+  DetectRTC.load(() => {
+    supports.value.screen = DetectRTC.isScreenCapturingSupported;
+    supports.value.camera = DetectRTC.hasWebcam;
+  });
+});
 
 const renderIcon = (icon: Component) => {
   return () => {
@@ -58,29 +65,33 @@ const renderIcon = (icon: Component) => {
   };
 };
 
-const screenOptions = supports.screen
-  ? [
-      {
-        label: "Screen Capture",
-        key: "screen",
-        icon: renderIcon(Desktop16Regular),
-      },
-    ]
-  : [];
+const screenOptions = computed(() =>
+  supports.value.screen
+    ? [
+        {
+          label: "Screen Capture",
+          key: "screen",
+          icon: renderIcon(Desktop16Regular),
+        },
+      ]
+    : []
+);
 
-const cameraOptions = supports.camera
-  ? [
-      {
-        label: "Camera",
-        key: "camera",
-        icon: renderIcon(Camera16Regular),
-      },
-    ]
-  : [];
+const cameraOptions = computed(() =>
+  supports.value.camera
+    ? [
+        {
+          label: "Camera",
+          key: "camera",
+          icon: renderIcon(Camera16Regular),
+        },
+      ]
+    : []
+);
 
-const options = [
-  ...screenOptions,
-  ...cameraOptions,
+const options = computed(() => [
+  ...screenOptions.value,
+  ...cameraOptions.value,
   {
     label: "Picture",
     key: "picture",
@@ -96,7 +107,7 @@ const options = [
     key: "manual",
     icon: renderIcon(Password16Regular),
   },
-];
+]);
 
 const handleSelect = (key: string) => {
   shows.value[key] = true;
