@@ -45,6 +45,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useOTPInfosStore } from "@/stores/otpInfos";
 import { NUploadDragger } from "naive-ui";
 import ImageAdd24Regular from "@vicons/fluent/ImageAdd24Regular";
+import { parseURI } from "@/data/otpauth-migration";
 
 const OTPInfosStore = useOTPInfosStore();
 const message = useMessage();
@@ -74,6 +75,19 @@ const handleFile = async (blob: Blob) => {
         show.value = false;
       } catch (err) {
         throw new Error("Failed to parse OTP URI");
+      }
+    } else if (uri.startsWith("otpauth-migration://")) {
+      try {
+        const optionsList = await parseURI(uri);
+        for (const options of optionsList) {
+          const id = uuidv4();
+          OTPInfosStore.add({ id, options });
+        }
+
+        message.success(`Imported ${optionsList.length} OTPs successfully`);
+        show.value = false;
+      } catch (err) {
+        throw new Error("Failed to parse OTP Migration URI");
       }
     } else {
       throw new Error("Not a valid OTP QR Code");

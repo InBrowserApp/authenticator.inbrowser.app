@@ -44,6 +44,7 @@ import { useIntervalFn } from "@vueuse/core";
 import { parseURIToOTPOptions } from "@/data/otp";
 import { v4 as uuidv4 } from "uuid";
 import { useOTPInfosStore } from "@/stores/otpInfos";
+import { parseURI } from "@/data/otpauth-migration";
 
 const OTPInfosStore = useOTPInfosStore();
 const message = useMessage();
@@ -123,6 +124,19 @@ const { pause, resume } = useIntervalFn(async () => {
             stopCapturing();
           } catch (err) {
             message.error("Failed to import OTP");
+          }
+        } else if (uri.startsWith("otpauth-migration://")) {
+          try {
+            const optionsList = await parseURI(uri);
+            for (const options of optionsList) {
+              const id = uuidv4();
+              OTPInfosStore.add({ id, options });
+            }
+
+            message.success(`Imported ${optionsList.length} OTPs successfully`);
+            show.value = false;
+          } catch (err) {
+            throw new Error("Failed to parse OTP Migration URI");
           }
         }
       }
