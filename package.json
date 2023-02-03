@@ -22,6 +22,7 @@
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.12",
+    "@types/qrcode": "^1.5.0",
     "@types/uuid": "^9.0.0",
     "@vicons/antd": "^0.12.0",
     "@vicons/carbon": "^0.12.0",
