@@ -34,7 +34,7 @@ import { parseURIToOTPOptions } from "@/data/otp";
 import { useVModel } from "@vueuse/core";
 import { v4 as uuidv4 } from "uuid";
 import { useOTPInfosStore } from "@/stores/otpInfos";
-import { parseURI } from "@/data/otpauth-migration";
+import { OTPAuthMigration } from "otpauth-migration";
 
 const props = defineProps<{
   show: boolean;
@@ -58,10 +58,16 @@ const onClick = async () => {
       OTPInfosStore.add({ id, options });
       message.success("Imported OTP successfully");
     } else if (uri.value.startsWith("otpauth-migration://")) {
-      const optionsList = await parseURI(uri.value);
+      const optionsList = OTPAuthMigration.parseURI(uri.value);
       for (const options of optionsList) {
         const id = uuidv4();
-        OTPInfosStore.add({ id, options });
+        OTPInfosStore.add({
+          id,
+          options: {
+            ...options,
+            label: options.name,
+          },
+        });
       }
       message.success(`Imported ${optionsList.length} OTPs successfully`);
     }

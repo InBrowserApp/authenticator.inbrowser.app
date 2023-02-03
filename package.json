@@ -9,10 +9,10 @@
     "test:unit": "vitest --environment jsdom --root src/",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "build:proto": "pbjs -t static-module -w es6 -o src/proto/migration.proto.js src/proto/migration.proto && pbts -o src/proto/migration.proto.d.ts src/proto/migration.proto.js"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "otpauth-migration": "^1.0.0",
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
@@ -46,8 +46,6 @@
     "npm-run-all": "^4.1.5",
     "otpauth": "^9.0.2",
     "prettier": "^2.7.1",
-    "protobufjs": "^7.2.0",
-    "protobufjs-cli": "~1.1.0",
     "qr-scanner": "^1.4.2",
     "qrcode": "^1.5.1",
     "typescript": "~4.7.4",
