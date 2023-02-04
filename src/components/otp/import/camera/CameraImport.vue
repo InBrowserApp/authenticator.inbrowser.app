@@ -60,7 +60,9 @@ const recording = ref(false);
 const captureVideo = ref<HTMLVideoElement | null>(null);
 
 const displayMediaOptions = {
-  video: true,
+  video: {
+    facingMode: "environment",
+  },
   audio: false,
 };
 
