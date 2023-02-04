@@ -1,4 +1,4 @@
-# 📝 Authenticator InBrowser.App
+# 🔒 Authenticator InBrowser.App
 
 https://authenticator.inbrowser.app
 
