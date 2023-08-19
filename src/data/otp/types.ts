@@ -5,5 +5,6 @@ export type OTPOptions = TOTPOptions | HOTPOptions;
 
 export interface OTPInfo {
   id: string;
+  date: number;
   options: OTPOptions;
 }
