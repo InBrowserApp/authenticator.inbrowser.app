@@ -3,22 +3,22 @@ import { useStorage } from "@vueuse/core";
 import { useOTPInfosStore } from "./otpInfos";
 
 export type SortBy = "date" | "issuer";
-export type SortType = "asc" | "desc";
+export type SortMethod = "asc" | "desc";
 
 export type Metadata = {
-  sort: { by: SortBy; type: SortType };
+  sort: { by: SortBy; method: SortMethod };
 };
 
 export const useMetadataStore = defineStore("metadata", () => {
   const OTPInfosStore = useOTPInfosStore();
 
   const metadata = useStorage<Metadata>("authenticator:metadata", {
-    sort: { by: "date", type: "asc" },
+    sort: { by: "date", method: "asc" },
   });
 
   function set(id: keyof Metadata, value: Metadata[keyof Metadata]) {
     if (id === "sort") {
-      OTPInfosStore.sort(value.by, value.type);
+      OTPInfosStore.sort(value.by, value.method);
     }
     metadata.value[id] = value;
   }

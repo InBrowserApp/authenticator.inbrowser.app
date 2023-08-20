@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SortType } from "@/stores/metadata";
+import type { SortMethod } from "@/stores/metadata";
 
 import { NTooltip, NSpace, NText, NSwitch, NIcon } from "naive-ui";
 import ArrowSortUp16Regular from "@vicons/fluent/ArrowSortUp16Regular";
@@ -26,6 +26,6 @@ import ArrowSortDown16Regular from "@vicons/fluent/ArrowSortDown16Regular";
 
 defineProps<{
   show: boolean;
-  value: SortType;
+  value: SortMethod;
 }>();
 </script>

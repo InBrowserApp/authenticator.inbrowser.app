@@ -29,7 +29,7 @@ const renderLabel = (by: SortBy, label: string) => {
       SortOptionLabel,
       {
         show: metadataStore.metadata.sort.by === by,
-        value: metadataStore.metadata.sort.type,
+        value: metadataStore.metadata.sort.method,
       },
       { default: () => label }
     );
@@ -60,9 +60,9 @@ const options = computed(() => [
 const handleSelect = (by: SortBy) => {
   metadataStore.set("sort", {
     by: by,
-    type:
+    method:
       metadataStore.metadata.sort.by === by &&
-      metadataStore.metadata.sort.type === "asc"
+      metadataStore.metadata.sort.method === "asc"
         ? "desc"
         : "asc",
   });
