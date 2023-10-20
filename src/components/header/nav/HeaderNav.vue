@@ -2,6 +2,8 @@
   <nav class="header-nav">
     <NavGitHub />
     <n-divider vertical />
+    <NavInBrowserApp />
+    <n-divider vertical />
     <ImportButton />
     <n-divider vertical />
     <ExportButton />
@@ -14,6 +16,7 @@
 import { NDivider } from "naive-ui";
 
 import NavGitHub from "./NavGitHub.vue";
+import NavInBrowserApp from "./NavInBrowserApp.vue";
 import ImportButton from "@/components/otp/import/ImportButton.vue";
 import ExportButton from "@/components/otp/export/ExportButton.vue";
 import SortButton from "@/components/otp/sort/SortButton.vue";
