@@ -7,6 +7,8 @@
     <ImportButton />
     <n-divider vertical />
     <ExportButton />
+    <n-divider vertical />
+    <SortButton />
   </nav>
 </template>
 
@@ -17,6 +19,7 @@ import NavGitHub from "./NavGitHub.vue";
 import NavInBrowserApp from "./NavInBrowserApp.vue";
 import ImportButton from "@/components/otp/import/ImportButton.vue";
 import ExportButton from "@/components/otp/export/ExportButton.vue";
+import SortButton from "@/components/otp/sort/SortButton.vue";
 </script>
 
 <style scoped>
